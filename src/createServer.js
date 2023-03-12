@@ -2,33 +2,28 @@
 
 const express = require('express');
 const cors = require('cors');
+const usersRouter = require('./routes/users');
+const expensesRouter = require('./routes/expenses');
+
 const { backupUsers } = require('./services/users');
-const {
-  getAll,
-  addOne,
-  getOne,
-  deleteOne,
-  updateOne,
-} = require('./controllers/users');
+const { backupExpenses } = require('./services/expenses');
+
+backupUsers();
+backupExpenses();
 
 function createServer() {
+  const app = express();
+
   backupUsers();
+  backupExpenses();
 
-  const server = express();
+  app.use(cors());
 
-  server.use(cors());
+  app.use('/users', express.json(), usersRouter);
 
-  server.get('/users', getAll);
+  app.use('/expenses', express.json(), expensesRouter);
 
-  server.post('/users', express.json(), addOne);
-
-  server.get('/users/:userId', express.json(), getOne);
-
-  server.delete('/users/:userId', express.json(), deleteOne);
-
-  server.patch('/users/:userId', express.json(), updateOne);
-
-  return server;
+  return app;
 }
 
 module.exports = {

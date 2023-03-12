@@ -7,13 +7,9 @@ const backupUsers = () => {
   users = [];
 };
 
-const getAllUsers = () => {
-  return users;
-};
+const getAllUsers = () => users;
 
-const getUser = (userId) => {
-  return users.find(user => user.id === +userId);
-};
+const getUser = (userId) => users.find(user => user.id === +userId);
 
 const addUser = (name) => {
   const newUser = {
