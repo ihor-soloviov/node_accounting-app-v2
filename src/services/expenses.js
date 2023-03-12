@@ -69,7 +69,7 @@ const deleteExpense = (id) => {
 
 const patchExpenses = (bodyParams, foundExpenses) => {
   for (const param in bodyParams) {
-    Object.assign(foundExpenses, bodyParams[param]);
+    foundExpenses[param] = bodyParams[param];
   }
 
   return foundExpenses;

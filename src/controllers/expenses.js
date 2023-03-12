@@ -56,7 +56,7 @@ const addOne = (req, res) => {
     return;
   }
 
-  const newExpenses = addExpense(
+  const newExpense = addExpense(
     userId,
     spentAt,
     title,
@@ -66,7 +66,7 @@ const addOne = (req, res) => {
   );
 
   res.statusCode = 201;
-  res.send(newExpenses);
+  res.send(newExpense);
 };
 
 const deleteOne = (req, res) => {
